@@ -1,0 +1,727 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  background: linear-gradient(-45deg, #87ceeb, #b0e0e6, #add8e6, #e0ffff);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  color: #16361f;
+  min-height: 100vh;
+  margin: 0;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Header */
+.topbar {
+  background: #f0f6f0;
+  padding: 8px 20px;
+  border-bottom: 4px solid #e6efe6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.lang {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+
+.navbar a {
+  padding: 10px 8px;
+  border-radius: 6px;
+}
+
+.navbar a:hover {
+  background: rgba(22, 54, 31, 0.06);
+}
+
+/* Hero */
+.hero {
+  background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Fsearch%3Fk%3Dgrass%2Bbackground&psig=AOvVaw3WL9cacA6GSZntL2o47DAP&ust=1754997398011000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJjNlL3Rgo8DFQAAAAAdAAAAABAK');
+  background-size: cover;
+  background-position: center;
+  padding: 70px 0;
+  color: white;
+  position: relative;
+}
+
+.overlay {
+  background: linear-gradient(rgba(10, 40, 20, 0.6), rgba(10, 40, 20, 0.35));
+  position: absolute;
+  inset: 0;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 42px;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Main layout */
+.main {
+  display: flex;
+  gap: 30px;
+  padding: 40px 0;
+}
+
+.sidebar {
+  width: 260px;
+  height: 400px; /* الطول اللي تريده */
+  background: white;
+  padding: 22px;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px rgba(6, 20, 10, 0.06);
+
+  /* الانميشن من تحت */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease-out;
+}
+
+.sidebar.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sidebar h3 {
+  background: #0f6b28;
+  color: white;
+  padding: 14px;
+  border-radius: 4px;
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+/* تكبير العنصر لما الماوس يقف عليه */
+.sidebar .cat {
+  transition: transform 0.3s ease;
+}
+
+.sidebar .cat:hover {
+  transform: scale(1.05);
+}
+
+
+.cat {
+  padding: 10px 6px;
+  border-bottom: 1px solid #eef2ee;
+}
+
+.cat summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.content {
+  flex: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+/* Cards */
+.card {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 6px;
+  padding: 12px;
+  box-shadow: 0 6px 18px rgba(6, 20, 10, 0.06);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease-out, transform 0.3s ease; /* أضفنا التحويل */
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover {
+  transform: translateY(0) scale(1.05); /* تكبير 5% */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* ظل أكبر عند الـ hover */
+}
+
+.card img {
+  width: 70%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.card .title {
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.card .meta {
+  font-size: 13px;
+  color: #4b5b49;
+}
+
+.card .tag {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: rgba(15, 107, 40, 0.8);
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+}
+
+/* floating contact buttons */
+.float-actions {
+  position: fixed;
+  right: 14px;
+  top: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1000;
+}
+
+/* شكل الزر */
+.float-actions a {
+  background: #0f6b28;
+  color: white;
+  border-radius: 24px; /* شكل شبه دائري */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 12px;
+  height: 48px;
+  width: 48px; /* الحجم الأساسي */
+  box-shadow: 0 6px 18px rgba(6, 20, 10, 0.12);
+  overflow: hidden;
+  white-space: nowrap;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+
+/* لون عند الـ hover + تكبير العرض */
+.float-actions a:hover {
+  background: #0d5b23;
+  width: 180px;
+}
+
+/* الأيقونة */
+.float-actions a i {
+  font-size: 20px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+/* النص بجانب الأيقونة */
+.float-actions a span {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* إظهار النص عند الـ hover */
+.float-actions a:hover span {
+  opacity: 1;
+}
+
+.float-actions {
+  position: fixed;
+  right: 14px;
+  top: 20px; /* مكانها في أعلى الصفحة */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1000;
+}
+
+.hero {
+ 
+  background-size: 600% 600%, cover;
+  background-position: 0% 50%, center;
+  animation: gradientMove 12s ease infinite;
+  padding: 70px 0;
+  color: white;
+  position: relative;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%, center; }
+  50% { background-position: 100% 50%, center; }
+  100% { background-position: 0% 50%, center; }
+}
+h1 {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: slideUp 1s ease-out forwards;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* search box*/
+.search-box {
+  position: relative;
+  top: -10px; /* ارفع العنصر 10 بكسل لفوق */
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.search-box input {
+  width: 0;
+  opacity: 0;
+  padding: 10px 36px 10px 10px;
+  border-radius: 6px;
+  border: 1px solid #e6efe6;
+  transition: all 0.3s ease;
+}
+
+.search-box.open input,
+.search-box:hover input {
+  width: 220px;
+  opacity: 1;
+}
+
+/* اللون الافتراضي للأيقونة أبيض */
+.search-box i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffffff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+/* عند المرور بالماوس أو الفتح يتحول للأسود */
+.search-box:hover i,
+.search-box.open i {
+  color: #000000;
+}
+ /* فيديو الخلفية */
+    #bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    /* طبقة شفافة فوق الفيديو */
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.2); /* شفاف خفيف */
+      z-index: -1;
+    }
+
+    /* تنسيق أساسي للصفحة */
+    body {
+      font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+      color: #16361f;
+      margin: 0;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    .sidebar {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 22px;
+      border-radius: 6px;
+      box-shadow: 0 6px 18px rgba(6, 20, 10, 0.06);
+    }
+
+    .sidebar h3 {
+      background: #0f6b28;
+      color: white;
+      padding: 14px;
+      border-radius: 4px;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+.cat > .content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.cat[open] > .content {
+  max-height: 200px; /* قيمة مناسبة تغطي محتوى الفقرات */
+  opacity: 1;
+}
+button {
+  border: none;          /* إزالة الحواف */
+  background: transparent; /* خلفية شفافة */
+  padding: 8px 16px;     /* مسافات داخلية */
+  cursor: pointer;       /* شكل اليد عند المرور */
+  transition: background-color 0.3s ease;
+  color: inherit;        /* يرث لون النص من العنصر الأب */
+  font-size: 1rem;       /* حجم الخط */
+  border-radius: 0;      /* إزالة أي حواف دائرية */
+}
+
+button:hover {
+  background-color: #007BFF; /* لون أزرق */
+  color: white;              /* نص أبيض لما يكون hovered */
+}
+  h3 {
+    color: black;
+    transition: color 0.3s ease;
+    cursor: pointer; /* عشان يبين للمستخدم انه تفاعلي */
+  }
+  h3:hover {
+    color: #333;
+  }
+ /* battery buttons*/
+ .battery-btn {
+    display: block;           /* يخلي الزر في سطر جديد */
+    width: 100px;              /* عرض الزر */
+    margin: 5px 0;             /* مسافة بين الأزرار */
+    padding: 10px;             /* مسافة داخلية */
+    border: none;              /* إزالة الإطار */
+    background-color: transparent; /* شفاف */
+    cursor: pointer;           /* شكل اليد عند المرور */
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.battery-btn:hover {
+    background-color: blue; /* لون عند المرور */
+    color: white;            /* النص أبيض */
+}
+/* img*/
+.img-inverter{
+    background-color: transparent;
+}
+/**/
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.card {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.navbar {
+  display: flex;
+  gap: 20px;
+  position: relative;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #0f6b28;
+  font-weight: 700;
+  padding: 8px;
+  position: relative;
+}
+
+/* الحاوية لكل عنصر Dropdown */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.88); /* أبيض شفاف */
+  backdrop-filter: blur(6px); /* ضبابية للخلفية */
+  min-width: 160px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px; /* حواف أنعم */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* ظل خفيف */
+  z-index: 10;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.dropdown-content a {
+  display: block;
+  padding: 10px 14px;
+  color: black;
+  font-weight: normal;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(240, 240, 240, 0.7);
+}
+
+/* إظهار القائمة مع Animation */
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+  .card {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card.hide {
+  opacity: 0;
+  transform: scale(0.8);
+}
+/*battries card*/
+.battery-card {
+  display: flex;
+  flex-direction: row; /* ترتيب أفقي */
+  align-items: center;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+  gap: 20px;
+  transition: transform 0.3s ease;
+}
+
+.battery-card:hover {
+  transform: scale(1.03);
+}
+
+.battery-image img {
+  width: 200px;
+  height: auto;
+  border-radius: 6px;
+}
+
+.battery-info {
+  flex: 1;
+}
+
+.battery-info .model {
+  color: #1aa333; /* أخضر */
+  margin: 0;
+  font-size: 22px;
+}
+
+.battery-info .subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 4px 0 10px;
+}
+
+.specs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.specs li {
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.specs strong {
+  color: #000;
+}
+#loading, 
+#notFound {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  z-index: 9999;
+  display: none;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4); /* شادو للكلام */
+}
+
+#loading {
+  font-size: 4rem; /* أكبر بكتير */
+  color: #0f6b28;
+}
+
+#notFound {
+  font-size: 5rem; /* أكبر */
+  color: red;
+}
+.card, .battery-card {
+  opacity: 0;
+  transform: translateY(50px) scale(1);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.card.show, .battery-card.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.card:hover, .battery-card:hover {
+  transform: translateY(0) scale(1.05);
+  box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+}
+
+
+.battery-card1 {
+  background: rgba(255, 255, 255, 0.5); /* خلفية شفافة */
+  border-radius: 8px; /* حواف أنعم */
+  padding: 12px;
+  box-shadow: 0 6px 18px rgba(6, 20, 10, 0.06); /* ظل خفيف */
+  text-align: center;
+  width: 200px;
+  margin: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* حركة سلسة عند hover */
+}
+
+.battery-card1:hover {
+  transform: scale(1.05); /* تكبير الكارت */
+  box-shadow: 0 10px 25px rgba(6, 20, 10, 0.12); /* ظل أقوى عند hover */
+}
+
+.battery-card1 img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.battery-card1:hover img {
+  transform: scale(1.05); /* تكبير الصورة مع الكارت */
+}
+
+.battery-card1 h2 {
+  font-size: 16px;
+  margin: 8px 0 4px 0;
+}
+
+.battery-card1 p {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: rgba(15, 107, 40, 0.8);
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.battery-card1:hover p {
+  transform: scale(1.05); /* تكبير النص قليلاً عند hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.battery-card,
+.battery-card1 {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.6s ease;
+}
+
+.battery-card.animate-battery,
+.battery-card1.animate-battery {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.battery-card.hide-battery,
+.battery-card1.hide-battery {
+  opacity: 0;
+  transform: translateY(50px);
+}
+.navbar,
+.dropdown {
+  margin-right: 20px; /* مسافة بين العناصر */
+}
+
+.navbar a,
+.dropdown > a {
+  font-weight: 600; /* تخن الخط */
+  text-decoration: none;
+  color: black;
+  padding: 5px 0;
+  position: relative;
+}
+
+/* الأنيميشن للخط تحت All Products */
+#showAll::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: blue;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+#showAll:hover::after {
+  width: 100%;
+}
